@@ -10,8 +10,11 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <%= render 'layouts/navbar' %>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <header>
+      <%= render "layouts/navbar" %>
+      <%= render "layouts/alerts" %>
+    </header>
+    <main class="container mx-auto mt-12 px-5 flex">
       <%= yield %>
     </main>
   </body>

@@ -69,3 +69,5 @@ end
 gem "tailwindcss-rails", "~> 2.1"
 
 gem "erb-formatter", "~> 0.7.0"
+
+gem "devise", "~> 4.9"
