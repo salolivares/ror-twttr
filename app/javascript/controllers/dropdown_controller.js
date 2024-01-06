@@ -7,7 +7,8 @@ export default class extends Controller {
   static targets = ["menu", "button", "visibility"];
   static values = {
     initialActive: { type: Boolean, default: false },
-    visibility: { type: String, default: "block" },
+    open: { type: String, default: "block" },
+    close: { type: String, default: "hidden" },
   };
 
   connect() {
@@ -18,7 +19,9 @@ export default class extends Controller {
     this.visibilityTargets.map((t, index) =>
       this.initialVisibilityState.set(
         index,
-        t.classList.contains("hidden") ? "hidden" : this.visibilityValue
+        t.classList.contains(this.closeValue)
+          ? this.closeValue
+          : this.visibilityValue
       )
     );
 
@@ -48,11 +51,11 @@ export default class extends Controller {
     );
 
     this.visibilityTargets.map((t) => {
-      if (t.classList.contains("hidden")) {
-        t.classList.remove("hidden");
+      if (t.classList.contains(this.closeValue)) {
+        t.classList.remove(this.closeValue);
         t.classList.add(this.visibilityValue);
       } else {
-        t.classList.add("hidden");
+        t.classList.add(this.closeValue);
         t.classList.remove(this.visibilityValue);
       }
     });
