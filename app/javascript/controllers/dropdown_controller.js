@@ -26,24 +26,23 @@ export default class extends Controller {
     }
   }
 
-  closeOnBigScreen(event) {
-    if (window.innerWidth > 768) {
-      this.close();
-    }
-  }
-
   toggle() {
-    console.log("hit");
-    this.menuClasses.map((c) => this.menuTarget.classList.toggle(c));
-    this.buttonClasses.map((c) => this.buttonTarget.classList.toggle(c));
+    this.menuClasses.map((c) =>
+      this.menuTargets.map((t) => t.classList.toggle(c))
+    );
+
+    this.buttonClasses.map((c) =>
+      this.buttonTargets.map((t) => t.classList.toggle(c))
+    );
   }
 
   close() {
-    this.menuClasses.map((c) => this.menuTarget.classList.add(c));
-    this.buttonClasses.map((c) => this.buttonTarget.classList.remove(c));
-    // let main = document.querySelector("main")
-    // main.classList.remove("blur")
-    // document.body.classList.remove("overflow-hidden");
-    // main.classList.remove("hidden")
+    this.menuClasses.map((c) =>
+      this.menuTargets.map((t) => t.classList.add(c))
+    );
+
+    this.buttonClasses.map((c) =>
+      this.buttonTargets.map((t) => t.classList.remove(c))
+    );
   }
 }
