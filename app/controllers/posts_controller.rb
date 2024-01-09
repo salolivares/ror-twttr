@@ -19,6 +19,10 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    # only allow the owner of the post to edit it
+    if @post.user != current_user
+      redirect_to post_url(@post), alert: "You are not allowed to edit this post."
+    end
   end
 
   # POST /posts or /posts.json
@@ -52,11 +56,16 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
-    @post.destroy!
+    # only allow the owner of the post to delete it
+    if @post.user != current_user
+      redirect_to post_url(@post), alert: "You are not allowed to delete this post."
+    else
+      @post.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
+        format.json { head :no_content }
+      end
     end
   end
 
