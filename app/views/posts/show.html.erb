@@ -16,6 +16,11 @@
     class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class='mt-5'>
       <%= render "comments/form", post: @post %>
+      <% @comments.each do |comment| %>
+        <%= render "comments/comment", post: @post, comment: comment %>
+      <% end %>
+    </div>
+    <div>
     </div>
   </div>
 </div>
